@@ -7,7 +7,7 @@ struct ListNode
 	
 };
 
-struct ListNode *head,*cur,*pre,*temp;
+struct ListNode *head,*cur,*pre,*temp,*next;
 
 void insert(int data)
 {
@@ -58,12 +58,27 @@ void display()
 			cur = cur->next;
 		}
 }
+
+void reverse(){
+	
+	cur = head;
+	pre  = NULL;
+
+	while(cur!= NULL){
+		next = cur->next;
+		cur->next = pre;
+		pre = cur;
+		cur = next;
+	}
+	head = pre;
+}
+
 int main()
 {
 	int option, data;
 	while(1)
 	{
-		printf("\nSelect the operation:\n1. Insert \n2. Delete \n3. Traverse\n");
+		printf("\nSelect the operation:\n1. Insert \n2. Delete \n3. Traverse\n4. Reverse\n");
 		scanf("%d", &option);
 
 		switch(option)
@@ -76,6 +91,8 @@ int main()
 					  	break;
 			case 3: 	display();
 					  	break;
+			case 4: 	reverse();
+						break;
 			default: 	printf("Invalid Input\n");
 
 		}
